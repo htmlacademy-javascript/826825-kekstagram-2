@@ -1,7 +1,8 @@
 # Личный проект «Кекстаграм»
 
 * Студент: [Андрей Бернгарт](https://up.htmlacademy.ru/javascript-individual/2/user/826825).
-* Наставник: `Неизвестно`.
+* Наставник: [Никита Сигов](https://htmlacademy.ru/profile/crazer).
+* Публикация [Публикация проекта](https://i3hanesy.github.io/826825-kekstagram-2/).
 
 ---
 
