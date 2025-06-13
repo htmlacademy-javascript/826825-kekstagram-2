@@ -1,6 +1,6 @@
 const checksLengthString = (checkString, maxLength) => checkString.length <= maxLength;
 
-console.log(checksLengthString('Пропоганда', 15));
+checksLengthString('Пропоганда', 15);
 
 const isStringPalindrome = (checkString) => {
   const normalasedCheckString = checkString.replaceAll(' ','').toUpperCase();
@@ -8,7 +8,7 @@ const isStringPalindrome = (checkString) => {
   return reverseString === normalasedCheckString;
 };
 
-console.log(isStringPalindrome('А роза упала на лапу Азора'));
+isStringPalindrome('А роза упала на лапу Азора');
 
 const getNumberFromString = (checkString) => {
   const normalString = checkString.toString();
@@ -21,4 +21,4 @@ const getNumberFromString = (checkString) => {
   return result ? result : NaN;
 };
 
-console.log(getNumberFromString('524 проблемы и 38 решений'));
+getNumberFromString('524 проблемы и 38 решений');
