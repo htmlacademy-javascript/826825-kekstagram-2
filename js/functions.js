@@ -1,21 +1,8 @@
-'use strict';
-
 function checksLengthString (checkString, maxLength) {
   return checkString.length <= maxLength;
 }
 
 console.log(checksLengthString('Пропоганда', 15));
-
-function checksPalindromeFirst (checkString) {
-  const normalasedCheckString = checkString.replaceAll(' ','').toUpperCase();
-  let reverseString = '';
-  for (let i = normalasedCheckString.length - 1; i > -1; i--) {
-    reverseString += normalasedCheckString[i];
-  }
-  return reverseString === normalasedCheckString;
-}
-
-console.log(checksPalindromeFirst('А роза упала на лапу Азора'));
 
 function checksPalindrome (checkString) {
   const normalasedCheckString = checkString.replaceAll(' ','').toUpperCase();
