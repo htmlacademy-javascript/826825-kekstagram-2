@@ -1,8 +1,10 @@
+
 const checksLengthString = (checkString, maxLength) => checkString.length <= maxLength;
 
 checksLengthString('Пропоганда', 15);
 
 const isStringPalindrome = (checkString) => {
+
   const normalasedCheckString = checkString.replaceAll(' ','').toUpperCase();
   const reverseString = normalasedCheckString.split('').reverse().join('');
   return reverseString === normalasedCheckString;
