@@ -12,6 +12,7 @@ const userPhotosFragment = document.createDocumentFragment();
 userPhotos.forEach(({id, url, description, likes, comments}) => {
   const pictureElement = picturTemplate.cloneNode(true);
   const image = pictureElement.querySelector('.picture__img');
+
   pictureElement.dataset.id = id;
   image.src = url;
   image.alt = description;
