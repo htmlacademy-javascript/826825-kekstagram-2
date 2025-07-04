@@ -1,7 +1,7 @@
 import {createPhotos} from './data.js';
 
 const picturesWrapper = document.querySelector('.pictures');
-const picturTemplate = document.querySelector('#picture')
+const pictureTemplate = document.querySelector('#picture')
   .content
   .querySelector('.picture');
 
@@ -10,7 +10,7 @@ const userPhotos = createPhotos();
 const userPhotosFragment = document.createDocumentFragment();
 
 userPhotos.forEach(({id, url, description, likes, comments}) => {
-  const pictureElement = picturTemplate.cloneNode(true);
+  const pictureElement = pictureTemplate.cloneNode(true);
   const image = pictureElement.querySelector('.picture__img');
 
   pictureElement.dataset.id = id;
@@ -24,3 +24,5 @@ userPhotos.forEach(({id, url, description, likes, comments}) => {
 });
 
 picturesWrapper.appendChild(userPhotosFragment);
+
+export {picturesWrapper, userPhotos};
