@@ -1,4 +1,5 @@
 import {createPhotos} from './data.js';
+import {openBigPicture} from './big-picture.js';
 
 const picturesWrapper = document.querySelector('.pictures');
 const pictureTemplate = document.querySelector('#picture')
@@ -25,4 +26,11 @@ userPhotos.forEach(({id, url, description, likes, comments}) => {
 
 picturesWrapper.appendChild(userPhotosFragment);
 
-export {picturesWrapper, userPhotos};
+picturesWrapper.addEventListener('click', (evt) => {
+  const target = evt.target.closest('.picture');
+  if (!target) {
+    return;
+  }
+  const photoElement = userPhotos.find((photo) => photo.id === Number(target.dataset.id));
+  openBigPicture(photoElement);
+});
