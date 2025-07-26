@@ -1,6 +1,6 @@
 import {isEscapeKey} from './until.js';
 import {resetEffects} from './photo-effects.js';
-import {ressetScaleValue} from './photo-scale.js';
+import {resetScaleValue} from './photo-scale.js';
 
 const bodyElement = document.querySelector('body');
 const fileUpload = document.querySelector('.img-upload');
@@ -21,7 +21,7 @@ const onDocumentKeydown = (evt) => {
   }
 };
 
-const onCloseButtunClick = () => {
+const onCloseButtonClick = () => {
   closeUploadForm();
 };
 
@@ -29,11 +29,11 @@ function closeUploadForm () {
   imgUploadOverlay.classList.add('hidden');
   bodyElement.classList.remove('modal-open');
   uploadInput.value = '';
-  ressetScaleValue();
+  resetScaleValue();
   resetEffects();
 
   document.removeEventListener('keydown', onDocumentKeydown);
-  closeBigPictureButton.removeEventListener('click', onCloseButtunClick);
+  closeBigPictureButton.removeEventListener('click', onCloseButtonClick);
 }
 
 function openUploadForm () {
@@ -41,7 +41,7 @@ function openUploadForm () {
   bodyElement.classList.add('modal-open');
 
   document.addEventListener('keydown', onDocumentKeydown);
-  closeBigPictureButton.addEventListener('click', onCloseButtunClick);
+  closeBigPictureButton.addEventListener('click', onCloseButtonClick);
 }
 
 uploadInput.addEventListener('change', openUploadForm);

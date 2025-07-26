@@ -17,25 +17,25 @@ const getScaleValue = (val) => {
   imgPreview.style.transform = `scale(${val / 100 })`;
 };
 
-const onscaleButtonBiggerClick = () => {
-  const increaseScale = scaleValue + SCALE_VALUE_STEP;
-  scaleValue = increaseScale > SCALE_VALUE_MAX ? SCALE_VALUE_MAX : increaseScale;
+const onScaleButtonBiggerClick = () => {
+  const changedScaleValue = scaleValue + SCALE_VALUE_STEP;
+  scaleValue = changedScaleValue > SCALE_VALUE_MAX ? SCALE_VALUE_MAX : changedScaleValue;
   getScaleValue(scaleValue);
 };
 
-const onscaleButtonSmallerClick = () => {
-  const reductionScale = scaleValue - SCALE_VALUE_STEP;
-  scaleValue = reductionScale < SCALE_VALUE_MIN ? SCALE_VALUE_MIN : reductionScale;
+const onScaleButtonSmallerClick = () => {
+  const changedScaleValue = scaleValue - SCALE_VALUE_STEP;
+  scaleValue = changedScaleValue < SCALE_VALUE_MIN ? SCALE_VALUE_MIN : changedScaleValue;
   getScaleValue(scaleValue);
 };
 
-const ressetScaleValue = () => {
+const resetScaleValue = () => {
   scaleValue = SCALE_VALUE_MAX;
   scaleValueInput.value = `${scaleValue}%`;
   imgPreview.style.transform = `scale(${scaleValue / 100 })`;
 };
 
-scaleButtonBigger.addEventListener('click', onscaleButtonBiggerClick);
-scaleButtonSmaller.addEventListener('click', onscaleButtonSmallerClick);
+scaleButtonBigger.addEventListener('click', onScaleButtonBiggerClick);
+scaleButtonSmaller.addEventListener('click', onScaleButtonSmallerClick);
 
-export {ressetScaleValue};
+export {resetScaleValue};
