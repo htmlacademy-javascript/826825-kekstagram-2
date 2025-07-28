@@ -1,4 +1,4 @@
-import {getRandomInteger, getRandomArrayElement, getRandomUniqueInteger} from './until.js';
+import {getRandomInteger, getRandomArrayElement, getRandomUniqueInteger} from './util.js';
 
 const COMMENT_MESSAGES = [
   'Всё отлично!',
