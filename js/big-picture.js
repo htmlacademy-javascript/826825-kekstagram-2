@@ -1,5 +1,5 @@
 import {renderComments, removeComments} from './render-comments.js';
-import {isEscapeKey} from './until.js';
+import {isEscapeKey} from './util.js';
 
 const bodyElement = document.querySelector('body');
 const bigPicture = document.querySelector('.big-picture');
