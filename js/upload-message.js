@@ -29,8 +29,9 @@ function onAroundModalClick (evt) {
 
 const renderMessage = (messageId) => {
   massageTemplateId = messageId;
-  const messageElement = document.querySelector(`#${massageTemplateId}`);
-  body.appendChild(messageElement.content);
+  const messageTemplate = document.querySelector(`#${messageId}`).content;
+  const messageElement = messageTemplate.cloneNode(true);
+  body.appendChild(messageElement);
 };
 
 
