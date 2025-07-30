@@ -22,6 +22,7 @@ const getRandomUniqueInteger = (maxNumber) => {
 
 const isEscapeKey = (evt) => evt.key === 'Escape';
 
+
 export {
   getRandomUniqueInteger,
   getRandomArrayElement,
