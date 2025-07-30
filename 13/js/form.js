@@ -5,15 +5,9 @@ const MAX_HASHTAGS_COUNT = 5;
 const MAX_DESCRIPTION_LENGTH = 140;
 const HASHTAG = /^#[a-zа-яё0-9]{1,19}$/i;
 
-const SubmitButtonText = {
-  IDLE: 'Опубликовать',
-  SENDING: 'Отправляю...'
-};
-
 const imgUploadForm = document.querySelector('.img-upload__form');
 const hashtagFeld = imgUploadForm.querySelector('.text__hashtags');
 const descriptionFeld = imgUploadForm.querySelector('.text__description');
-const submitButton = imgUploadForm.querySelector('.img-upload__submit');
 
 const pristine = new Pristine(imgUploadForm, {
   classTo: 'img-upload__field-wrapper',
