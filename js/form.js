@@ -1,3 +1,6 @@
+import {showPostError, showPostSuccess} from './upload-message.js';
+import {sendData} from './api.js';
+
 const MAX_HASHTAGS_COUNT = 5;
 const MAX_DESCRIPTION_LENGTH = 140;
 const HASHTAG = /^#[a-zа-яё0-9]{1,19}$/i;
@@ -15,7 +18,7 @@ const pristine = new Pristine(imgUploadForm, {
 
 const getArrayFromValue = (value) => value.toLowerCase().trim().split(' ').filter((element) => element !== '');
 
-const isHashtagsLengthValid = (value) => getArrayFromValue(value).length <= MAX_HASHTAGS_COUNT;
+const isHashtagsLengtValid = (value) => getArrayFromValue(value).length <= MAX_HASHTAGS_COUNT;
 
 const isHashtagValid = (value) => {
   if (value === '') {
@@ -37,7 +40,7 @@ pristine.addValidator(
 
 pristine.addValidator(
   hashtagFeld,
-  isHashtagsLengthValid,
+  isHashtagsLengtValid,
   `Нельзя указывать больше ${MAX_HASHTAGS_COUNT} Хэш-Тегов`
 );
 
@@ -57,7 +60,23 @@ pristine.addValidator(
   `Длина комментария больше ${MAX_DESCRIPTION_LENGTH} символов`
 );
 
-imgUploadForm.addEventListener('submit', (evt) => {
-  evt.preventDefault();
-  pristine.validate();
-});
+const setFormSubmit = (onSuccess) => {
+  imgUploadForm.addEventListener('submit', (evt) => {
+    evt.preventDefault();
+    const isValid = pristine.validate();
+    if (isValid) {
+      sendData(new FormData(evt.target))
+        .then(() => {
+          onSuccess();
+          showPostSuccess();
+        })
+        .catch(
+          () => {
+            showPostError();
+          }
+        );
+    }
+  });
+};
+
+export {setFormSubmit};

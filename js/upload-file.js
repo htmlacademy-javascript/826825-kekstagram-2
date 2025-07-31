@@ -31,6 +31,8 @@ function closeUploadForm () {
   uploadInput.value = '';
   resetScaleValue();
   resetEffects();
+  hashtagFeld.value = '';
+  descriptionFeld.value = '';
 
   document.removeEventListener('keydown', onDocumentKeydown);
   closeBigPictureButton.removeEventListener('click', onCloseButtonClick);
@@ -45,3 +47,5 @@ function openUploadForm () {
 }
 
 uploadInput.addEventListener('change', openUploadForm);
+
+export {closeUploadForm};

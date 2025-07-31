@@ -41,4 +41,4 @@ closeBigPictureButton.addEventListener('click', () => {
   closeBigPicture();
 });
 
-export {openBigPicture};
+export {openBigPicture, closeBigPicture};
