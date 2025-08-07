@@ -1,6 +1,7 @@
 import {renderComments, removeComments} from './render-comments.js';
 import {isEscapeKey} from './util.js';
 
+const picturesWrapper = document.querySelector('.pictures');
 const bodyElement = document.querySelector('body');
 const bigPicture = document.querySelector('.big-picture');
 const closeBigPictureButton = bigPicture.querySelector('.big-picture__cancel');
@@ -12,13 +13,12 @@ const onDocumentKeydown = (evt) => {
   }
 };
 
-const renderBigPicture = ({url, likes, description, comments}) => {
+const renderBigPicture = (photo) => {
+  bigPicture.querySelector('.big-picture__img img').src = photo.url;
+  bigPicture.querySelector('.likes-count').textContent = photo.likes;
+  bigPicture.querySelector('.social__caption').textContent = photo.description;
 
-  bigPicture.querySelector('.big-picture__img img').src = url;
-  bigPicture.querySelector('.likes-count').textContent = likes;
-  bigPicture.querySelector('.social__caption').textContent = description;
-
-  renderComments(comments);
+  renderComments(photo.comments);
 };
 
 function openBigPicture (photoElement) {
@@ -37,7 +37,17 @@ function closeBigPicture () {
   document.removeEventListener('keydown', onDocumentKeydown);
 }
 
+const setImgClick = (userPhotos) => {
+  picturesWrapper.addEventListener('click', (evt) => {
+    const target = evt.target.closest('.picture');
+    if (!target) {
+      return;
+    }
+    const photoElement = userPhotos.find((photo) => photo.id === Number(target.dataset.id));
+    openBigPicture(photoElement);
+  });
+};
 
 closeBigPictureButton.addEventListener('click', closeBigPicture);
 
-export {openBigPicture, closeBigPicture};
+export {setImgClick};

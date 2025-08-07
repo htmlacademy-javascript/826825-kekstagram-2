@@ -1,8 +1,9 @@
 import {renderPhotos} from './picture.js';
 import {debounce} from './util.js';
-const RERENDER_DELAY = 500;
 
+const RERENDER_DELAY = 500;
 const SHOW_ITEMS = 10;
+
 const FILTER = {
   default: 'filter-default',
   random: 'filter-random',
@@ -14,6 +15,9 @@ const imgFilters = document.querySelector('.img-filters');
 let currentFilter = '';
 let photosData = [];
 
+const getShufflePhotos = (photos) => photos.slice().sort(() => 0.5 - Math.random());
+const getSortedPhotos = (photos) => photos.slice().sort((a, b) => b.comments.length - a.comments.length);
+
 const showFilters = (data) => {
   imgFilters.classList.remove('img-filters--inactive');
   photosData = data.slice();
@@ -22,16 +26,20 @@ const showFilters = (data) => {
 const debounceRenderPhotos = debounce(renderPhotos, RERENDER_DELAY);
 
 const applyFilters = () => {
-  if (currentFilter.id === FILTER.random) {
-    debounceRenderPhotos(photosData.slice(0, SHOW_ITEMS).sort(() => 0.5 - Math.random()));
-  }
 
-  if (currentFilter.id === FILTER.discussed) {
-    debounceRenderPhotos(photosData.slice().sort((a, b) => b.comments.length - a.comments.length));
-  }
+  switch(currentFilter.id) {
 
-  if (currentFilter.id === FILTER.default) {
-    debounceRenderPhotos(photosData.slice());
+    case FILTER.random:
+      debounceRenderPhotos(getShufflePhotos(photosData).slice(0, SHOW_ITEMS));
+      break;
+
+    case FILTER.discussed:
+      debounceRenderPhotos(getSortedPhotos(photosData));
+      break;
+
+    case FILTER.default:
+      debounceRenderPhotos(photosData.slice());
+      break;
   }
 };
 

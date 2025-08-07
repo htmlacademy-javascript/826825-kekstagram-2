@@ -1,21 +1,9 @@
-import {openBigPicture} from './big-picture.js';
 import {clearDomElements} from './util.js';
 
 const picturesWrapper = document.querySelector('.pictures');
 const pictureTemplate = document.querySelector('#picture')
   .content
   .querySelector('.picture');
-
-const setImgClick = (userPhotos) => {
-  picturesWrapper.addEventListener('click', (evt) => {
-    const target = evt.target.closest('.picture');
-    if (!target) {
-      return;
-    }
-    const photoElement = userPhotos.find((photo) => photo.id === Number(target.dataset.id));
-    openBigPicture(photoElement);
-  });
-};
 
 const renderPhotos = (photos) => {
 
@@ -39,7 +27,6 @@ const renderPhotos = (photos) => {
 
   picturesWrapper.appendChild(userPhotosFragment);
 
-  setImgClick(photos);
 };
 
 export {renderPhotos};

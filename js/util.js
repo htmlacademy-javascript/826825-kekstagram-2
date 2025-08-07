@@ -31,8 +31,8 @@ const debounce = (callback, timeoutDelay = 500) => {
   };
 };
 
-const clearDomElements = (parentElement, tagElement) => {
-  const domElement = parentElement.querySelectorAll(tagElement);
+const clearDomElements = (parentElement, elementSelector) => {
+  const domElement = parentElement.querySelectorAll(elementSelector);
   domElement.forEach((node) => {
     node.parentNode.removeChild(node);
   });
