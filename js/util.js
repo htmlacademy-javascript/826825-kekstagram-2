@@ -22,10 +22,27 @@ const getRandomUniqueInteger = (maxNumber) => {
 
 const isEscapeKey = (evt) => evt.key === 'Escape';
 
+const debounce = (callback, timeoutDelay = 500) => {
+  let timeoutId;
+
+  return (...rest) => {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => callback.apply(this, rest), timeoutDelay);
+  };
+};
+
+const clearDomElements = (parentElement, tagElement) => {
+  const domElement = parentElement.querySelectorAll(tagElement);
+  domElement.forEach((node) => {
+    node.parentNode.removeChild(node);
+  });
+};
 
 export {
   getRandomUniqueInteger,
   getRandomArrayElement,
   getRandomInteger,
-  isEscapeKey
+  isEscapeKey,
+  clearDomElements,
+  debounce
 };

@@ -1,19 +1,29 @@
-// import {createPhotos} from './data.js';
 import {openBigPicture} from './big-picture.js';
+import {clearDomElements} from './util.js';
 
 const picturesWrapper = document.querySelector('.pictures');
 const pictureTemplate = document.querySelector('#picture')
   .content
   .querySelector('.picture');
 
-let userPhotos = [];
+const setImgClick = (userPhotos) => {
+  picturesWrapper.addEventListener('click', (evt) => {
+    const target = evt.target.closest('.picture');
+    if (!target) {
+      return;
+    }
+    const photoElement = userPhotos.find((photo) => photo.id === Number(target.dataset.id));
+    openBigPicture(photoElement);
+  });
+};
 
-const renderPhotos = (serverData) => {
+const renderPhotos = (photos) => {
 
-  userPhotos = serverData.slice();
   const userPhotosFragment = document.createDocumentFragment();
 
-  userPhotos.forEach(({id, url, description, likes, comments}) => {
+  clearDomElements(picturesWrapper, 'a');
+
+  photos.forEach(({id, url, description, likes, comments}) => {
     const pictureElement = pictureTemplate.cloneNode(true);
     const image = pictureElement.querySelector('.picture__img');
 
@@ -28,16 +38,8 @@ const renderPhotos = (serverData) => {
   });
 
   picturesWrapper.appendChild(userPhotosFragment);
+
+  setImgClick(photos);
 };
-
-
-picturesWrapper.addEventListener('click', (evt) => {
-  const target = evt.target.closest('.picture');
-  if (!target) {
-    return;
-  }
-  const photoElement = userPhotos.find((photo) => photo.id === Number(target.dataset.id));
-  openBigPicture(photoElement);
-});
 
 export {renderPhotos};

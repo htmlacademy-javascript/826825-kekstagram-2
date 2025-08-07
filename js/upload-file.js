@@ -10,7 +10,7 @@ const closeBigPictureButton = fileUpload.querySelector('.img-upload__cancel');
 const hashtagFeld = imgUploadOverlay.querySelector('.text__hashtags');
 const descriptionFeld = imgUploadOverlay.querySelector('.text__description');
 
-const onDocumentKeydown = (evt) => {
+const onDocumentByUploadFileKeydown = (evt) => {
   if (isEscapeKey(evt)) {
     evt.preventDefault();
     if (document.activeElement === hashtagFeld || document.activeElement === descriptionFeld) {
@@ -34,7 +34,7 @@ function closeUploadForm () {
   hashtagFeld.value = '';
   descriptionFeld.value = '';
 
-  document.removeEventListener('keydown', onDocumentKeydown);
+  document.removeEventListener('keydown', onDocumentByUploadFileKeydown);
   closeBigPictureButton.removeEventListener('click', onCloseButtonClick);
 }
 
@@ -42,10 +42,10 @@ function openUploadForm () {
   imgUploadOverlay.classList.remove('hidden');
   bodyElement.classList.add('modal-open');
 
-  document.addEventListener('keydown', onDocumentKeydown);
+  document.addEventListener('keydown', onDocumentByUploadFileKeydown);
   closeBigPictureButton.addEventListener('click', onCloseButtonClick);
 }
 
 uploadInput.addEventListener('change', openUploadForm);
 
-export {closeUploadForm};
+export {closeUploadForm, onDocumentByUploadFileKeydown};

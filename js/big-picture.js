@@ -21,14 +21,6 @@ const renderBigPicture = ({url, likes, description, comments}) => {
   renderComments(comments);
 };
 
-function closeBigPicture () {
-  bigPicture.classList.add('hidden');
-  bodyElement.classList.remove('modal-open');
-
-  removeComments();
-  document.removeEventListener('keydown', onDocumentKeydown);
-}
-
 function openBigPicture (photoElement) {
   bigPicture.classList.remove('hidden');
   bodyElement.classList.add('modal-open');
@@ -37,8 +29,15 @@ function openBigPicture (photoElement) {
   document.addEventListener('keydown', onDocumentKeydown);
 }
 
-closeBigPictureButton.addEventListener('click', () => {
-  closeBigPicture();
-});
+function closeBigPicture () {
+  bigPicture.classList.add('hidden');
+  bodyElement.classList.remove('modal-open');
+
+  removeComments();
+  document.removeEventListener('keydown', onDocumentKeydown);
+}
+
+
+closeBigPictureButton.addEventListener('click', closeBigPicture);
 
 export {openBigPicture, closeBigPicture};
