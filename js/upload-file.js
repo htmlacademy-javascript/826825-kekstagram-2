@@ -1,7 +1,7 @@
 import {isEscapeKey} from './util.js';
 import {resetEffects} from './photo-effects.js';
 import {resetScaleValue} from './photo-scale.js';
-import {setPristine} from './form.js';
+import {setPristine, destroyPrestine} from './form.js';
 
 const bodyElement = document.querySelector('body');
 const fileUpload = document.querySelector('.img-upload');
@@ -34,6 +34,7 @@ function closeUploadForm () {
   resetEffects();
   hashtagFeld.value = '';
   descriptionFeld.value = '';
+  destroyPrestine();
 
   document.removeEventListener('keydown', onDocumentByUploadFileKeydown);
   closeBigPictureButton.removeEventListener('click', onCloseButtonClick);

@@ -10,8 +10,8 @@ const Method = {
 };
 
 
-const load = (route, method = Method.GET, body = null) =>
-  fetch(`${BASE_URL}${route}`, {method, body})
+const load = async (route, method = Method.GET, body = null) =>
+  await fetch(`${BASE_URL}${route}`, {method, body})
     .then((response) => {
       if (!response.ok) {
         throw new Error(`Произошла ошибка ${response.status}: ${response.statusText}`);
