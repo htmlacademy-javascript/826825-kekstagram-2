@@ -1,5 +1,6 @@
 import {renderPhotos} from './picture.js';
 import {debounce} from './util.js';
+import {setImgClick} from './big-picture.js';
 
 const RERENDER_DELAY = 500;
 const SHOW_ITEMS = 10;
@@ -18,9 +19,11 @@ let photosData = [];
 const getShufflePhotos = (photos) => photos.slice().sort(() => 0.5 - Math.random());
 const getSortedPhotos = (photos) => photos.slice().sort((a, b) => b.comments.length - a.comments.length);
 
-const showFilters = (data) => {
-  imgFilters.classList.remove('img-filters--inactive');
+const initPhotos = (data) => {
   photosData = data.slice();
+  renderPhotos(photosData);
+  imgFilters.classList.remove('img-filters--inactive');
+  setImgClick(photosData);
 };
 
 const debounceRenderPhotos = debounce(renderPhotos, RERENDER_DELAY);
@@ -62,4 +65,4 @@ const onImgFiltersClick = (evt) => {
 
 imgFilters.addEventListener('click', onImgFiltersClick);
 
-export {showFilters};
+export {initPhotos};
