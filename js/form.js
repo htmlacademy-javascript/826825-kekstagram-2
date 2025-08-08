@@ -18,7 +18,7 @@ const pristine = new Pristine(imgUploadForm, {
 
 const getArrayFromValue = (value) => value.toLowerCase().trim().split(' ').filter((element) => element !== '');
 
-const isHashtagsLengtValid = (value) => getArrayFromValue(value).length <= MAX_HASHTAGS_COUNT;
+const isHashtagsLengthValid = (value) => getArrayFromValue(value).length <= MAX_HASHTAGS_COUNT;
 
 const isHashtagValid = (value) => {
   if (value === '') {
@@ -40,7 +40,7 @@ pristine.addValidator(
 
 pristine.addValidator(
   hashtagFeld,
-  isHashtagsLengtValid,
+  isHashtagsLengthValid,
   `Нельзя указывать больше ${MAX_HASHTAGS_COUNT} Хэш-Тегов`
 );
 

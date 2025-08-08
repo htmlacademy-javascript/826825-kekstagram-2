@@ -1,4 +1,5 @@
 import {isEscapeKey} from './util.js';
+import {onDocumentByUploadFileKeydown} from './upload-file.js';
 
 const ALERT_SHOW_TIME = 5000;
 const body = document.querySelector('body');
@@ -9,6 +10,9 @@ const closeMessage = () => {
   body.querySelector(`.${massageTemplateId}`).remove();
   document.removeEventListener('keydown', onDocumentKeydown);
   document.removeEventListener('click', onAroundModalClick);
+  if (massageTemplateId === 'error') {
+    document.addEventListener('keydown', onDocumentByUploadFileKeydown);
+  }
   massageTemplateId = '';
 };
 
@@ -59,6 +63,7 @@ const showPostSuccess = () => {
 const showPostError = () => {
   renderMessage('error');
   createAction();
+  document.removeEventListener('keydown', onDocumentByUploadFileKeydown);
 };
 
 export {
