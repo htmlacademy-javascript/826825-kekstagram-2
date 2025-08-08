@@ -1,6 +1,7 @@
 import {isEscapeKey} from './util.js';
 import {resetEffects} from './photo-effects.js';
 import {resetScaleValue} from './photo-scale.js';
+import {setPristine} from './form.js';
 
 const bodyElement = document.querySelector('body');
 const fileUpload = document.querySelector('.img-upload');
@@ -41,6 +42,7 @@ function closeUploadForm () {
 function openUploadForm () {
   imgUploadOverlay.classList.remove('hidden');
   bodyElement.classList.add('modal-open');
+  setPristine();
 
   document.addEventListener('keydown', onDocumentByUploadFileKeydown);
   closeBigPictureButton.addEventListener('click', onCloseButtonClick);

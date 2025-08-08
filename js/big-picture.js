@@ -13,12 +13,12 @@ const onDocumentKeydown = (evt) => {
   }
 };
 
-const renderBigPicture = (photo) => {
-  bigPicture.querySelector('.big-picture__img img').src = photo.url;
-  bigPicture.querySelector('.likes-count').textContent = photo.likes;
-  bigPicture.querySelector('.social__caption').textContent = photo.description;
+const renderBigPicture = ({url, likes, description, comments}) => {
+  bigPicture.querySelector('.big-picture__img img').src = url;
+  bigPicture.querySelector('.likes-count').textContent = likes;
+  bigPicture.querySelector('.social__caption').textContent = description;
 
-  renderComments(photo.comments);
+  renderComments(comments);
 };
 
 function openBigPicture (photoElement) {
