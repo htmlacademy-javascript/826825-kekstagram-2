@@ -78,6 +78,10 @@ const unblockSubmitButton = () => {
   submitButton.textContent = SubmitButtonText.IDLE;
 };
 
+const destroyPrestine = () => {
+  pristine.destroy();
+};
+
 const setFormSubmit = (onSuccess) => {
   imgUploadForm.addEventListener('submit', (evt) => {
     evt.preventDefault();
@@ -88,7 +92,7 @@ const setFormSubmit = (onSuccess) => {
         .then(() => {
           onSuccess();
           showPostSuccess();
-          pristine.destroy();
+          destroyPrestine();
         })
         .catch(
           () => {
@@ -100,4 +104,4 @@ const setFormSubmit = (onSuccess) => {
   });
 };
 
-export {setFormSubmit, setPristine};
+export {setFormSubmit, setPristine, destroyPrestine};
